@@ -1,0 +1,108 @@
+build_xcelium/test.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+       0:	000001b7          	lui	gp,0x0
+       4:	60018193          	addi	gp,gp,1536 # 600 <__global_pointer$>
+       8:	00001137          	lui	sp,0x1
+       c:	40010113          	addi	sp,sp,1024 # 1400 <__stack_top>
+      10:	40000293          	li	t0,1024
+      14:	40000313          	li	t1,1024
+      18:	0062d863          	bge	t0,t1,28 <_start+0x28>
+      1c:	0002a023          	sw	zero,0(t0)
+      20:	00428293          	addi	t0,t0,4
+      24:	ff5ff06f          	j	18 <_start+0x18>
+      28:	0b8000ef          	jal	e0 <main>
+      2c:	0000006f          	j	2c <_start+0x2c>
+
+00000030 <iterative_sum>:
+      30:	fd010113          	addi	sp,sp,-48
+      34:	02112623          	sw	ra,44(sp)
+      38:	02812423          	sw	s0,40(sp)
+      3c:	03010413          	addi	s0,sp,48
+      40:	fca42e23          	sw	a0,-36(s0)
+      44:	fe042623          	sw	zero,-20(s0)
+      48:	00100793          	li	a5,1
+      4c:	fef42423          	sw	a5,-24(s0)
+      50:	0200006f          	j	70 <iterative_sum+0x40>
+      54:	fec42703          	lw	a4,-20(s0)
+      58:	fe842783          	lw	a5,-24(s0)
+      5c:	00f707b3          	add	a5,a4,a5
+      60:	fef42623          	sw	a5,-20(s0)
+      64:	fe842783          	lw	a5,-24(s0)
+      68:	00178793          	addi	a5,a5,1
+      6c:	fef42423          	sw	a5,-24(s0)
+      70:	fe842703          	lw	a4,-24(s0)
+      74:	fdc42783          	lw	a5,-36(s0)
+      78:	fce7dee3          	bge	a5,a4,54 <iterative_sum+0x24>
+      7c:	fec42783          	lw	a5,-20(s0)
+      80:	00078513          	mv	a0,a5
+      84:	02c12083          	lw	ra,44(sp)
+      88:	02812403          	lw	s0,40(sp)
+      8c:	03010113          	addi	sp,sp,48
+      90:	00008067          	ret
+
+00000094 <reference_sum>:
+      94:	fe010113          	addi	sp,sp,-32
+      98:	00112e23          	sw	ra,28(sp)
+      9c:	00812c23          	sw	s0,24(sp)
+      a0:	02010413          	addi	s0,sp,32
+      a4:	fea42623          	sw	a0,-20(s0)
+      a8:	fec42783          	lw	a5,-20(s0)
+      ac:	00178793          	addi	a5,a5,1
+      b0:	fec42583          	lw	a1,-20(s0)
+      b4:	00078513          	mv	a0,a5
+      b8:	09c000ef          	jal	154 <__mulsi3>
+      bc:	00050793          	mv	a5,a0
+      c0:	01f7d713          	srli	a4,a5,0x1f
+      c4:	00f707b3          	add	a5,a4,a5
+      c8:	4017d793          	srai	a5,a5,0x1
+      cc:	00078513          	mv	a0,a5
+      d0:	01c12083          	lw	ra,28(sp)
+      d4:	01812403          	lw	s0,24(sp)
+      d8:	02010113          	addi	sp,sp,32
+      dc:	00008067          	ret
+
+000000e0 <main>:
+      e0:	fe010113          	addi	sp,sp,-32
+      e4:	00112e23          	sw	ra,28(sp)
+      e8:	00812c23          	sw	s0,24(sp)
+      ec:	02010413          	addi	s0,sp,32
+      f0:	06400513          	li	a0,100
+      f4:	f3dff0ef          	jal	30 <iterative_sum>
+      f8:	fea42423          	sw	a0,-24(s0)
+      fc:	06400513          	li	a0,100
+     100:	f95ff0ef          	jal	94 <reference_sum>
+     104:	fea42223          	sw	a0,-28(s0)
+     108:	fe042623          	sw	zero,-20(s0)
+     10c:	40002703          	lw	a4,1024(zero) # 400 <STACK_CANARY>
+     110:	deadc7b7          	lui	a5,0xdeadc
+     114:	eef78793          	addi	a5,a5,-273 # deadbeef <__stack_top+0xdeadaaef>
+     118:	00f70863          	beq	a4,a5,128 <main+0x48>
+     11c:	00100793          	li	a5,1
+     120:	fef42623          	sw	a5,-20(s0)
+     124:	0180006f          	j	13c <main+0x5c>
+     128:	fe842703          	lw	a4,-24(s0)
+     12c:	fe442783          	lw	a5,-28(s0)
+     130:	00f70663          	beq	a4,a5,13c <main+0x5c>
+     134:	00100793          	li	a5,1
+     138:	fef42623          	sw	a5,-20(s0)
+     13c:	fec42783          	lw	a5,-20(s0)
+     140:	00078513          	mv	a0,a5
+     144:	01c12083          	lw	ra,28(sp)
+     148:	01812403          	lw	s0,24(sp)
+     14c:	02010113          	addi	sp,sp,32
+     150:	00008067          	ret
+
+00000154 <__mulsi3>:
+     154:	00050613          	mv	a2,a0
+     158:	00000513          	li	a0,0
+     15c:	0015f693          	andi	a3,a1,1
+     160:	00068463          	beqz	a3,168 <__mulsi3+0x14>
+     164:	00c50533          	add	a0,a0,a2
+     168:	0015d593          	srli	a1,a1,0x1
+     16c:	00161613          	slli	a2,a2,0x1
+     170:	fe0596e3          	bnez	a1,15c <__mulsi3+0x8>
+     174:	00008067          	ret
