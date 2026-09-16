@@ -1,0 +1,104 @@
+build_xcelium/test.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+       0:	000001b7          	lui	gp,0x0
+       4:	60018193          	addi	gp,gp,1536 # 600 <__global_pointer$>
+       8:	00001137          	lui	sp,0x1
+       c:	40010113          	addi	sp,sp,1024 # 1400 <__stack_top>
+      10:	40000293          	li	t0,1024
+      14:	40000313          	li	t1,1024
+      18:	0062d863          	bge	t0,t1,28 <_start+0x28>
+      1c:	0002a023          	sw	zero,0(t0)
+      20:	00428293          	addi	t0,t0,4
+      24:	ff5ff06f          	j	18 <_start+0x18>
+      28:	0a8000ef          	jal	d0 <main>
+      2c:	0000006f          	j	2c <_start+0x2c>
+
+00000030 <recursive_sum>:
+      30:	fe010113          	addi	sp,sp,-32
+      34:	00112e23          	sw	ra,28(sp)
+      38:	00812c23          	sw	s0,24(sp)
+      3c:	02010413          	addi	s0,sp,32
+      40:	fea42623          	sw	a0,-20(s0)
+      44:	fec42783          	lw	a5,-20(s0)
+      48:	00079663          	bnez	a5,54 <recursive_sum+0x24>
+      4c:	00000793          	li	a5,0
+      50:	0200006f          	j	70 <recursive_sum+0x40>
+      54:	fec42783          	lw	a5,-20(s0)
+      58:	fff78793          	addi	a5,a5,-1
+      5c:	00078513          	mv	a0,a5
+      60:	fd1ff0ef          	jal	30 <recursive_sum>
+      64:	00050713          	mv	a4,a0
+      68:	fec42783          	lw	a5,-20(s0)
+      6c:	00f707b3          	add	a5,a4,a5
+      70:	00078513          	mv	a0,a5
+      74:	01c12083          	lw	ra,28(sp)
+      78:	01812403          	lw	s0,24(sp)
+      7c:	02010113          	addi	sp,sp,32
+      80:	00008067          	ret
+
+00000084 <reference_sum>:
+      84:	fe010113          	addi	sp,sp,-32
+      88:	00112e23          	sw	ra,28(sp)
+      8c:	00812c23          	sw	s0,24(sp)
+      90:	02010413          	addi	s0,sp,32
+      94:	fea42623          	sw	a0,-20(s0)
+      98:	fec42783          	lw	a5,-20(s0)
+      9c:	00178793          	addi	a5,a5,1
+      a0:	fec42583          	lw	a1,-20(s0)
+      a4:	00078513          	mv	a0,a5
+      a8:	09c000ef          	jal	144 <__mulsi3>
+      ac:	00050793          	mv	a5,a0
+      b0:	01f7d713          	srli	a4,a5,0x1f
+      b4:	00f707b3          	add	a5,a4,a5
+      b8:	4017d793          	srai	a5,a5,0x1
+      bc:	00078513          	mv	a0,a5
+      c0:	01c12083          	lw	ra,28(sp)
+      c4:	01812403          	lw	s0,24(sp)
+      c8:	02010113          	addi	sp,sp,32
+      cc:	00008067          	ret
+
+000000d0 <main>:
+      d0:	fe010113          	addi	sp,sp,-32
+      d4:	00112e23          	sw	ra,28(sp)
+      d8:	00812c23          	sw	s0,24(sp)
+      dc:	02010413          	addi	s0,sp,32
+      e0:	06400513          	li	a0,100
+      e4:	f4dff0ef          	jal	30 <recursive_sum>
+      e8:	fea42423          	sw	a0,-24(s0)
+      ec:	06400513          	li	a0,100
+      f0:	f95ff0ef          	jal	84 <reference_sum>
+      f4:	fea42223          	sw	a0,-28(s0)
+      f8:	fe042623          	sw	zero,-20(s0)
+      fc:	40002703          	lw	a4,1024(zero) # 400 <STACK_CANARY>
+     100:	deadc7b7          	lui	a5,0xdeadc
+     104:	eef78793          	addi	a5,a5,-273 # deadbeef <__stack_top+0xdeadaaef>
+     108:	00f70863          	beq	a4,a5,118 <main+0x48>
+     10c:	00100793          	li	a5,1
+     110:	fef42623          	sw	a5,-20(s0)
+     114:	0180006f          	j	12c <main+0x5c>
+     118:	fe842703          	lw	a4,-24(s0)
+     11c:	fe442783          	lw	a5,-28(s0)
+     120:	00f70663          	beq	a4,a5,12c <main+0x5c>
+     124:	00100793          	li	a5,1
+     128:	fef42623          	sw	a5,-20(s0)
+     12c:	fec42783          	lw	a5,-20(s0)
+     130:	00078513          	mv	a0,a5
+     134:	01c12083          	lw	ra,28(sp)
+     138:	01812403          	lw	s0,24(sp)
+     13c:	02010113          	addi	sp,sp,32
+     140:	00008067          	ret
+
+00000144 <__mulsi3>:
+     144:	00050613          	mv	a2,a0
+     148:	00000513          	li	a0,0
+     14c:	0015f693          	andi	a3,a1,1
+     150:	00068463          	beqz	a3,158 <__mulsi3+0x14>
+     154:	00c50533          	add	a0,a0,a2
+     158:	0015d593          	srli	a1,a1,0x1
+     15c:	00161613          	slli	a2,a2,0x1
+     160:	fe0596e3          	bnez	a1,14c <__mulsi3+0x8>
+     164:	00008067          	ret
