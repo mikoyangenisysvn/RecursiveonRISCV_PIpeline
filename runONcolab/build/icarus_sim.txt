@@ -1,0 +1,120 @@
+========================================
+ RISC-V Pipeline Test: Recursion/Iteration
+========================================
+WARNING: tb/tb_RISCV_Pipeline.v:40: $readmemh(./mem/imem.hex): Not enough words in the file for the requested range [0:255].
+[TB] Loaded: ./mem/imem.hex
+[TB] Canary pre-loaded at DMEM word idx 0 = 0xdeadbeef
+VCD info: dumpfile waveform.vcd opened for output.
+[TRACE] cycle=0  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=1  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TB] Reset released, simulation started
+[TRACE] cycle=2  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=3  PC_D=0x00000000 Instr_D=0x000001b7  PCSel_E=0 stall_load=0
+[TRACE] cycle=4  PC_D=0x00000004 Instr_D=0x60018193  PCSel_E=0 stall_load=0
+[TRACE] cycle=5  PC_D=0x00000008 Instr_D=0x00001137  PCSel_E=0 stall_load=0
+[TRACE] cycle=6  PC_D=0x0000000c Instr_D=0x40010113  PCSel_E=0 stall_load=0
+[TRACE] cycle=7  PC_D=0x00000010 Instr_D=0x40000293  PCSel_E=0 stall_load=0
+[TRACE] cycle=8  PC_D=0x00000014 Instr_D=0x40000313  PCSel_E=0 stall_load=0
+[TRACE] cycle=9  PC_D=0x00000018 Instr_D=0x0062d863  PCSel_E=0 stall_load=0
+[TRACE] cycle=10  PC_D=0x0000001c Instr_D=0x0002a023  PCSel_E=1 stall_load=0
+[TRACE] cycle=11  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=12  PC_D=0x00000028 Instr_D=0x0a8000ef  PCSel_E=0 stall_load=0
+[TRACE] cycle=13  PC_D=0x0000002c Instr_D=0x0000006f  PCSel_E=1 stall_load=0
+[TRACE] cycle=14  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=15  PC_D=0x000000d0 Instr_D=0xfe010113  PCSel_E=0 stall_load=0
+[TRACE] cycle=16  PC_D=0x000000d4 Instr_D=0x00112e23  PCSel_E=0 stall_load=0
+[TRACE] cycle=17  PC_D=0x000000d8 Instr_D=0x00812c23  PCSel_E=0 stall_load=0
+[TRACE] cycle=18  PC_D=0x000000dc Instr_D=0x02010413  PCSel_E=0 stall_load=0
+[TRACE] cycle=19  PC_D=0x000000e0 Instr_D=0x06400513  PCSel_E=0 stall_load=0
+[TRACE] cycle=20  PC_D=0x000000e4 Instr_D=0xf4dff0ef  PCSel_E=0 stall_load=0
+[TRACE] cycle=21  PC_D=0x000000e8 Instr_D=0xfea42423  PCSel_E=1 stall_load=0
+[TRACE] cycle=22  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=23  PC_D=0x00000030 Instr_D=0xfe010113  PCSel_E=0 stall_load=0
+[TRACE] cycle=24  PC_D=0x00000034 Instr_D=0x00112e23  PCSel_E=0 stall_load=0
+[TRACE] cycle=25  PC_D=0x00000038 Instr_D=0x00812c23  PCSel_E=0 stall_load=0
+[TRACE] cycle=26  PC_D=0x0000003c Instr_D=0x02010413  PCSel_E=0 stall_load=0
+[TRACE] cycle=27  PC_D=0x00000040 Instr_D=0xfea42623  PCSel_E=0 stall_load=0
+[TRACE] cycle=28  PC_D=0x00000044 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=29  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=1
+[TRACE] cycle=30  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=0
+[TRACE] cycle=31  PC_D=0x0000004c Instr_D=0x00000793  PCSel_E=1 stall_load=0
+[TRACE] cycle=32  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=33  PC_D=0x00000054 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=34  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=1
+[TRACE] cycle=35  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=0
+[TRACE] cycle=36  PC_D=0x0000005c Instr_D=0x00078513  PCSel_E=0 stall_load=0
+[TRACE] cycle=37  PC_D=0x00000060 Instr_D=0xfd1ff0ef  PCSel_E=0 stall_load=0
+[TRACE] cycle=38  PC_D=0x00000064 Instr_D=0x00050713  PCSel_E=1 stall_load=0
+[TRACE] cycle=39  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=40  PC_D=0x00000030 Instr_D=0xfe010113  PCSel_E=0 stall_load=0
+[TRACE] cycle=41  PC_D=0x00000034 Instr_D=0x00112e23  PCSel_E=0 stall_load=0
+[TRACE] cycle=42  PC_D=0x00000038 Instr_D=0x00812c23  PCSel_E=0 stall_load=0
+[TRACE] cycle=43  PC_D=0x0000003c Instr_D=0x02010413  PCSel_E=0 stall_load=0
+[TRACE] cycle=44  PC_D=0x00000040 Instr_D=0xfea42623  PCSel_E=0 stall_load=0
+[TRACE] cycle=45  PC_D=0x00000044 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=46  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=1
+[TRACE] cycle=47  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=0
+[TRACE] cycle=48  PC_D=0x0000004c Instr_D=0x00000793  PCSel_E=1 stall_load=0
+[TRACE] cycle=49  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=50  PC_D=0x00000054 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=51  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=1
+[TRACE] cycle=52  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=0
+[TRACE] cycle=53  PC_D=0x0000005c Instr_D=0x00078513  PCSel_E=0 stall_load=0
+[TRACE] cycle=54  PC_D=0x00000060 Instr_D=0xfd1ff0ef  PCSel_E=0 stall_load=0
+[TRACE] cycle=55  PC_D=0x00000064 Instr_D=0x00050713  PCSel_E=1 stall_load=0
+[TRACE] cycle=56  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=57  PC_D=0x00000030 Instr_D=0xfe010113  PCSel_E=0 stall_load=0
+[TRACE] cycle=58  PC_D=0x00000034 Instr_D=0x00112e23  PCSel_E=0 stall_load=0
+[TRACE] cycle=59  PC_D=0x00000038 Instr_D=0x00812c23  PCSel_E=0 stall_load=0
+[TRACE] cycle=60  PC_D=0x0000003c Instr_D=0x02010413  PCSel_E=0 stall_load=0
+[TRACE] cycle=61  PC_D=0x00000040 Instr_D=0xfea42623  PCSel_E=0 stall_load=0
+[TRACE] cycle=62  PC_D=0x00000044 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=63  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=1
+[TRACE] cycle=64  PC_D=0x00000048 Instr_D=0x00079663  PCSel_E=0 stall_load=0
+[TRACE] cycle=65  PC_D=0x0000004c Instr_D=0x00000793  PCSel_E=1 stall_load=0
+[TRACE] cycle=66  PC_D=0x00000000 Instr_D=0x00000013  PCSel_E=0 stall_load=0
+[TRACE] cycle=67  PC_D=0x00000054 Instr_D=0xfec42783  PCSel_E=0 stall_load=0
+[TRACE] cycle=68  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=1
+[TRACE] cycle=69  PC_D=0x00000058 Instr_D=0xfff78793  PCSel_E=0 stall_load=0
+[TB] Cycle 200, PC=0x0000004c
+[TB] Cycle 400, PC=0x00000040
+[TB] Cycle 600, PC=0x00000030
+[TB] Cycle 800, PC=0x0000005c
+[TB] Cycle 1000, PC=0x00000050
+[TB] Cycle 1200, PC=0x00000044
+[TB] Cycle 1400, PC=0x00000034
+[TB] Cycle 1600, PC=0x00000060
+[TB] Cycle 1800, PC=0x00000070
+[TB] Cycle 2000, PC=0x00000078
+[TB] Cycle 2200, PC=0x00000080
+[TB] Cycle 2400, PC=0x00000088
+[TB] Cycle 2600, PC=0x00000068
+[TB] Cycle 2800, PC=0x00000070
+[TB] *** HALT LOOP REACHED *** at cycle 2958, PC=0x0000002c
+========================================
+[TB] Simulation finished at cycle 2963
+[TB] a0 (status) = 0 (0 = pass, nonzero = fail)
+[TB] Canary now  = 0xdeadbeef (expected 0xdeadbeef)
+[TB] *** PASS *** status == 0
+[TB] Canary intact -> no stack overflow detected
+[TB] Cycles to completion = 2958
+[TB] Key registers:
+  x1(ra)  = 44
+  x2(sp)  = 5120
+  x10(a0) = 0
+----------------------------------------
+[REPORT] --- Architecture / Trade-off metrics ---
+[REPORT] Total cycles                       = 2963
+[REPORT] Instruction count (IC, corrected)  = 2008
+[REPORT] CPI (corrected)                    = 1.476
+[REPORT] --- Hazard breakdown ---
+[REPORT] Load-Use stall events/cycles       = 304 (10.3% of total)
+[REPORT] Branch/Jump redirect EVENTS        = 324
+[REPORT] Branch/Jump flush PENALTY cycles   = 648 (2 x events, 21.9% of total)
+[REPORT] Total hazard overhead cycles       = 952 (32.1% of total)
+[REPORT] --- Stack usage ---
+[REPORT] Stack top (byte)                   = 5120
+[REPORT] Min sp reached (byte)               = 1856 (at cycle 1727)
+[REPORT] Max stack usage (bytes)             = 3264
+----------------------------------------
+tb/tb_RISCV_Pipeline.v:223: $finish called at 29635000 (1ps)
