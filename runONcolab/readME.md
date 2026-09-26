@@ -1,58 +1,75 @@
-# **INSTRUSTIONS**
+# Instructions
 
-the folder runONcolab is contains all the source code and result file after simulate on google colab. If you want to check out this project, just download the runONcolab folder and run it.
-#REQUIRE TOOL:
-the Makefile is built to run on some specific tools, you need to download it to watch the result and operation with the available makefile. If you are professional, you know what to do, if you don't, copy the below script.
-# =========================
-# Install Verilator 5.026
-# =========================
+The `runONcolab` directory contains all source code and simulation results generated on Google Colab. To explore this project, download or clone the `runONcolab` folder and follow the setup instructions below.
 
-# 1. Install dependencies
-apt-get update
-apt-get install -y \
-    git make autoconf g++ flex bison help2man
+---
 
-# 2. Download Verilator source
+## Prerequisites & Installation
+
+The provided `Makefile` depends on specific HDL tools and the RISC-V toolchain. If you are running this environment on Google Colab or an Ubuntu/Debian system, execute the script below to install all dependencies.
+
+```bash
+# ==========================================
+# 1. Install Verilator (v5.026)
+# ==========================================
+
+# Install build dependencies
+sudo apt-get update
+sudo apt-get install -y git make autoconf g++ flex bison help2man
+
+# Clone and build Verilator
 cd /content
-git clone https://github.com/verilator/verilator.git
+git clone [https://github.com/verilator/verilator.git](https://github.com/verilator/verilator.git)
 cd verilator
-git checkout v5.050
+git checkout v5.026
 
-# 3. Configure
 autoconf
 ./configure
 
-# 4. Build (use -j2 for Colab stability)
+# Build (using -j2 for Colab stability) and install
 make -j2
+sudo make install
 
-# 5. Install
-make install
-
-# 6. Refresh shell cache
+# Refresh shell cache and verify
 hash -r
-
-# 7. Verify installation
 which verilator
 verilator --version
 
 
-# Install Icarus
-sudo apt update
-sudo apt install iverilog gtkwave
+# ==========================================
+# 2. Install Icarus Verilog & GTKWave
+# ==========================================
 
-# Install Risc_v toolchain
-wget -q https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v14.2.0-3/xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz
+sudo apt update
+sudo apt install -y iverilog gtkwave
+
+
+# ==========================================
+# 3. Install RISC-V GNU Toolchain
+# ==========================================
+
+cd /content
+wget -q [https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v14.2.0-3/xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz](https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v14.2.0-3/xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz)
 
 tar -xzf xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz
 
-
+# Add toolchain to PATH
 export PATH=/content/xpack-riscv-none-elf-gcc-14.2.0-3/bin:$PATH
-
-riscv-none-elf-gcc --version
-
-# Để PATH có hiệu lực lâu dài trong phiên làm việc hiện tại, bạn cũng có thể dùng:
 echo 'export PATH=/content/xpack-riscv-none-elf-gcc-14.2.0-3/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
-# HOW TO USE:
-after installing all the tools, use this flow: make hex -> make run, maybe you should make clean first to clear the available result and watch the operation of the flow from the begining 
+# Verify installation
+riscv-none-elf-gcc --version
+
+# How to Run
+Once all prerequisites are installed, run the commands in the following order:
+
+Bash
+# (Optional) Clean previous simulation outputs
+make clean
+
+# Generate hex files from source code
+make hex
+
+# Execute simulation
+make run
