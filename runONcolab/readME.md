@@ -1,4 +1,4 @@
-#INSTRUCTION
+#**INSTRUSTIONS**
 
 the folder runONcolab is contains all the source code and result file after simulate on google colab. If you want to check out this project, just download the runONcolab folder and run it.
 #REQUIRE TOOL:
